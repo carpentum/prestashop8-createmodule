@@ -21,6 +21,6 @@ class Multipurpose extends Module
     }
     public function hookDisplayHome()
     {
-        return 'This is the random text from the module multipurpose';
+        return $this->display(__FILE__, 'views/templates/hook/home.tpl');
     }
 }
