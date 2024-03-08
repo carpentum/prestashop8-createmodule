@@ -13,10 +13,14 @@ class Multipurpose extends Module
     }
     public function install()
     {
-        return parent::install();
+        return parent::install() && $this->registerHook('displayHome');
     }
     public function uninstall()
     {
         return parent::uninstall();
+    }
+    public function hookDisplayHome()
+    {
+        return 'This is the random text from the module multipurpose';
     }
 }
