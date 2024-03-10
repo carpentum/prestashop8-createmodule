@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -135,8 +136,10 @@ class AdminModulesPositionsControllerCore extends AdminController
                             $this->errors[] = $this->trans('An error occurred while transplanting the module to its hook.', [], 'Admin.Modules.Notification');
                         }
                         /* Unregister module from hook & exceptions linked to module */
-                        if (!$module->unregisterHook($id_hook, Shop::getContextListShopID())
-                            || !$module->unregisterExceptions($id_hook, Shop::getContextListShopID())) {
+                        if (
+                            !$module->unregisterHook($id_hook, Shop::getContextListShopID())
+                            || !$module->unregisterExceptions($id_hook, Shop::getContextListShopID())
+                        ) {
                             $this->errors[] = $this->trans('An error occurred while deleting the module from its hook.', [], 'Admin.Modules.Notification');
                         }
                         $id_hook = $new_hook;
@@ -198,8 +201,10 @@ class AdminModulesPositionsControllerCore extends AdminController
                 } elseif (!$id_hook || !Validate::isLoadedObject($hook)) {
                     $this->errors[] = $this->trans('Hook cannot be loaded.', [], 'Admin.Modules.Notification');
                 } else {
-                    if (!$module->unregisterHook($id_hook, Shop::getContextListShopID())
-                        || !$module->unregisterExceptions($id_hook, Shop::getContextListShopID())) {
+                    if (
+                        !$module->unregisterHook($id_hook, Shop::getContextListShopID())
+                        || !$module->unregisterExceptions($id_hook, Shop::getContextListShopID())
+                    ) {
                         $this->errors[] = $this->trans('An error occurred while deleting the module from its hook.', [], 'Admin.Modules.Notification');
                     } else {
                         Tools::redirectAdmin($baseUrl . '&conf=17' . ($this->display_key ? '&show_modules=' . $this->display_key : '') . '&token=' . $this->token);
@@ -369,8 +374,8 @@ class AdminModulesPositionsControllerCore extends AdminController
         $content .= '<p>
 					<select size="25" id="em_list_' . $shop_id . '" multiple="multiple">
 					<option disabled="disabled">'
-                    . $this->trans('___________ CUSTOM ___________', [], 'Admin.Design.Feature')
-                    . '</option>';
+            . $this->trans('___________ CUSTOM ___________', [], 'Admin.Design.Feature')
+            . '</option>';
 
         $controllers = Dispatcher::getControllersPhpselfList(_PS_FRONT_CONTROLLER_DIR_);
         asort($controllers);
