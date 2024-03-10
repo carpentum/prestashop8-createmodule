@@ -58,4 +58,9 @@ class Multipurpose extends Module
 
         );
     }
+
+    public function getContent()
+    {
+        return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
+    }
 }
