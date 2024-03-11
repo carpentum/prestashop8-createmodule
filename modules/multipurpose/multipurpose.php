@@ -36,6 +36,9 @@ class Multipurpose extends Module
     }
     public function hookDisplayHome()
     {
+        $this->context->smarty->assign([
+            'MULTIPURPOSE_STR' => Configuration::get('MULTIPURPOSE_STR')
+        ]);
         return $this->display(__FILE__, 'views/templates/hook/home.tpl');
     }
     public function hookDisplayHeader()
@@ -61,6 +64,14 @@ class Multipurpose extends Module
 
     public function getContent()
     {
+        if (Tools::isSubmit('savemultipurposestring')) {
+            $name = Tools::getValue('print');
+            Configuration::updateValue('MULTIPURPOSE_STR', $name, true);
+        }
+        $this->context->smarty->assign([
+            'MULTIPURPOSE_STR' => Configuration::get('MULTIPURPOSE_STR')
+        ]);
+
         return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
     }
 }
