@@ -28,7 +28,7 @@ class Multipurpose extends Module
     }
     public function install()
     {
-        return parent::install() && $this->registerHook('displayHome');
+        return parent::install() && $this->registerHook('displayHome') && $this->createTabLink();
     }
     public function uninstall()
     {
@@ -73,5 +73,18 @@ class Multipurpose extends Module
         ]);
 
         return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
+    }
+
+    public function createTabLink()
+    {
+        $tab = new Tab;
+        foreach (Language::getLanguages() as $lang) {
+            $tab->name[$lang['id_lang']] = $this->l('Origin');
+        }
+        $tab->class_name = 'AdminOrigin';
+        $tab->module = $this->name;
+        $tab->id_parent = 0;
+        $tab->add();
+        return true;
     }
 }
