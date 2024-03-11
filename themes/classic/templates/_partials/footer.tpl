@@ -42,6 +42,11 @@
       {/block}
     </div>
     <div class="row">
+      {block name='hook_footer_after'}
+        {hook h='displayAfterFooter'}
+      {/block}
+    </div>
+    <div class="row">
       <div class="col-md-12">
         <p class="text-sm-center">
           {block name='copyright_link'}

@@ -1,4 +1,7 @@
 <?php
+
+// http://prestashop-createmodule.local/module/multipurpose/task
+
 class MultipurposeTaskModuleFrontController extends ModuleFrontController
 {
     public function __construct()

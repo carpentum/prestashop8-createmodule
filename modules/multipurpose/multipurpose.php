@@ -32,7 +32,11 @@ class Multipurpose extends Module
     public function install()
     {
         include_once($this->local_path . 'sql/install.php');
-        return parent::install() && $this->registerHook('displayHome') && $this->createTabLink();
+        return parent::install()
+            && $this->registerHook('displayHome')
+            && $this->registerHook('displayHeader')
+            && $this->registerHook('displayAfterFooter')
+            && $this->createTabLink();
     }
     public function uninstall()
     {
@@ -92,5 +96,10 @@ class Multipurpose extends Module
         $tab->id_parent = 0;
         $tab->add();
         return true;
+    }
+
+    public function hookDisplayAfterFooter()
+    {
+        return $this->display(__FILE__, 'views/templates/hook/home.tpl');
     }
 }
