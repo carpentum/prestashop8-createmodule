@@ -28,10 +28,12 @@ class Multipurpose extends Module
     }
     public function install()
     {
+        include_once($this->local_path . 'sql/install.php');
         return parent::install() && $this->registerHook('displayHome') && $this->createTabLink();
     }
     public function uninstall()
     {
+        include_once($this->local_path . 'sql/uninstall.php');
         return parent::uninstall();
     }
     public function hookDisplayHome()
