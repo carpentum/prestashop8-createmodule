@@ -1,5 +1,8 @@
 <?php
 
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -71,7 +74,8 @@ class Multipurpose extends Module
             Configuration::updateValue('MULTIPURPOSE_STR', $name, true);
         }
         $this->context->smarty->assign([
-            'MULTIPURPOSE_STR' => Configuration::get('MULTIPURPOSE_STR')
+            'MULTIPURPOSE_STR' => Configuration::get('MULTIPURPOSE_STR'),
+            'controller_url_with_token' => $this->context->link->getAdminLink('AdminModules')
         ]);
 
         return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
